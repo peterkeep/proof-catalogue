@@ -9,7 +9,3 @@
 *.out
 *.snm
 *.toc
-
-# Ignore pdf's #
-################
-*.pdf
