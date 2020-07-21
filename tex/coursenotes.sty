@@ -1,0 +1,99 @@
+% Package used for formatting class notes for Calculus
+%
+% Created by Peter Keep, 2019
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{classnotes}
+  [2011/01/11 v0.01 LaTeX package formatting class notes]
+
+% Framed package
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{xcolor}
+
+\usepackage{ifthen}
+
+%Define margins
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+
+
+% Definitions
+\newenvironment{defn}[1]{\begin{mdframed}[backgroundcolor=gray!30]
+\begin{description}
+\item [Definition -- #1:]
+\begin{description}
+\item[]}
+{\end{description}
+\end{description}\end{mdframed}}
+
+% Description
+\newenvironment{describe}[1]{
+\begin{description}
+\item [#1:]
+\begin{description}
+\item[]}
+{\end{description}
+\end{description}}
+
+% Recaps
+\newenvironment{recap}
+{\begin{mdframed}[backgroundcolor=gray!10, roundcorner=5pt]
+\vspace{-0.5cm}
+\subsection*{Reminders}}
+{\vspace{0.25cm}\end{mdframed}}
+
+% Theorems
+\newenvironment{thm}[1]{\begin{mdframed}[backgroundcolor=gray!30] \begin{description}
+\item [Theorem -- #1:]
+\begin{description}
+\item[]}
+{\end{description}
+\end{description}\end{mdframed}}
+
+% Important
+\newenvironment{imp}[1]{\begin{mdframed}[backgroundcolor=gray!30] \begin{description}
+\item [#1:]
+\begin{description}
+\item[]}
+{\end{description}
+\end{description}\end{mdframed}}
+
+% Notes
+\newenvironment{note}[1]
+{\begin{changemargin}{0.5in}{0.5in}\begin{description}
+\item [ \textit{#1:}]
+\begin{description}
+\item}
+{\end{description}
+\end{description}\end{changemargin}}
+
+% End of Proof
+\newcommand{\eop}{\raisebox{-0.3ex}{/\!\!/}}
+
+% Proof
+\newenvironment{prf}[1]{%
+\newcommand{\prooftitle}{#1}%
+\begin{changemargin}{0.5in}{0.5in}\begin{description}
+\item [ \ifthenelse{\equal{\prooftitle}{}}{\textit{Proof:} }{\textit{Proof of #1}:}]
+\begin{description}
+\item}
+{\eop\end{description}
+\end{description}\end{changemargin}}
+
+% Sidebar
+\newenvironment{sidebar}[1]
+{\begin{changemargin}{0.5in}{0.5in}\begin{mdframed}[backgroundcolor=gray!30]\begin{description}
+\item [ \textit{#1:}]
+\begin{description}
+\item}
+{\end{description}
+\end{description}\end{mdframed}\end{changemargin}}
+
+%better limits
+\newcommand{\dlim}{\displaystyle \lim}
+
+%better integrals
+\newcommand{\dint}{\displaystyle \int}
+
+%better sums
+\newcommand{\dsum}{\displaystyle \sum}

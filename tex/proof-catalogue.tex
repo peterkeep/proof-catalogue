@@ -1,0 +1,37 @@
+\documentclass[12pt]{book}
+
+\usepackage{amsmath, amsthm, mathtools, dsfont, amssymb, pifont}
+\usepackage[mathscr]{euscript}
+\usepackage[side,marginal, symbol, perpage]{footmisc}
+\usepackage[paperwidth = 9.5in, left=1.5cm, right=6cm, top=2cm, bottom=2cm, marginparsep=0.75cm, marginparwidth=4cm]{geometry}
+
+\usepackage{coursenotes}
+
+\usepackage{multicol, booktabs, bm}
+\usepackage{tikz}
+
+\setlength{\parskip}{1em}
+
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+\renewcommand{\thefootnote}{\ding{70}}
+
+\title{Proof Catalogue}
+\author{Peter Keep\\ Moraine Valley Community College}
+\date{Revised: \today}
+
+\begin{document}
+
+\newgeometry{margin=1in}
+\maketitle
+
+\tableofcontents
+\restoregeometry
+
+\chapter{Pre-Calclulus Results}
+
+\input{./1_pre-calculus/difference-of-angles-cosine.tex}
+
+
+
+\end{document}
