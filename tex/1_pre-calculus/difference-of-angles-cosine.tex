@@ -18,20 +18,106 @@ For angles $\alpha$ and $\beta$:
 
 It is standard to prove only one of these results, since the remaining results can be found using co-function identities and changing the sign of angle $\beta$.
 
-We present some proofs of the identity $\cos(\alpha - \beta) = \cos\alpha\cos\beta + \sin\alpha\sin\beta$:
-
-\subsection{Rotation Around the Unit Circle}
+\subsection{Difference Formula for Cosine: Rotation Around the Unit Circle}
 
 \begin{prf}{Difference Formula for Cosine}
-  Let $\alpha$ and $\beta$ be angles in central position.
+  Let $\alpha$ and $\beta$ be angles in central position. We'll draw a chord connecting the two intersection points of the terminal sides of $\alpha$ and $\beta$ with the edge of the unit circle. Call the length of this chord $d_1$.
+  \begin{center}
+    \begin{tikzpicture}
+      %origin
+      \draw (0,0) coordinate (O);
+      \coordinate (B) at (60:2.5cm);
+      \coordinate (A) at (130:2.5cm);
+      %axes
+      \draw[->] (-3,0) -- ++(6,0) coordinate (X) node[below] {$x$};
+      \draw[->] (0,-3) -- ++(0,6) node[left] {$y$};
+      %circle
+      \draw[very thick] (0,0) circle (2.5cm);
+      %angle beta
+      \draw[->, red, very thick] (0,0) -- (60:3cm);
+      \fill[red] (B) circle[radius=2pt];
+      \draw[dashed, thick] pic [draw,red,->,angle radius=0.4cm, pic text=$\beta$, angle eccentricity=1.5] {angle=X--O--B};
+      %angle alpha
+      \draw[->, blue, very thick] (0,0) -- (130:3cm);
+      \fill[blue] (A) circle[radius=2pt];
+      \draw[dashed, thick] pic [draw,blue,->,angle radius=0.8cm, pic text=$\hspace{-0.5cm}\alpha$, angle eccentricity=1.5] {angle=X--O--A};
+      %distance
+      \draw[orange, very thick] (A) -- (B)
+      node[above left, midway] {$d_1$};
+    \end{tikzpicture}
+  \end{center}
 
-  \begin{tikzpicture}
-    %axes
-    \draw[->] (-3,0) -- ++(6,0) coordinate (X) node[below] {$x$};
-    \draw[->] (0,-3) -- ++(0,6) node[left] {$y$};
-    %circle
-    \draw[very thick] (0,0) circle (2cm);
-    %angles
-    \draw[->, red, very thick] (0,0) -- (2,3);
-  \end{tikzpicture}
+  Now we can consider the same figure, rotated clockwise by an angle of $\beta$. This will align the first angle with the $x$-axis, and our angle $\alpha$ becomes $\alpha-\beta$.
+
+  \begin{center}
+    \begin{tikzpicture}
+      %origin
+      \draw (0,0) coordinate (O);
+      \coordinate (B) at (0:2.5cm);
+      \coordinate (A) at (70:2.5cm);
+      %axes
+      \draw[->] (-3,0) -- ++(6,0) coordinate (X) node[below] {$x$};
+      \draw[->] (0,-3) -- ++(0,6) node[left] {$y$};
+      %circle
+      \draw[very thick] (0,0) circle (2.5cm);
+      %angle beta
+      \draw[->, red, very thick] (0,0) -- (0:3cm);
+      \fill[red] (B) circle[radius=2pt];
+      %angle alpha
+      \draw[->, blue, very thick] (0,0) -- (70:3cm);
+      \fill[blue] (A) circle[radius=2pt];
+      \draw[dashed, thick] pic [draw,blue,->,angle radius=0.4cm, pic text=$\hspace{1cm}\alpha-\beta$, angle eccentricity=1.5] {angle=X--O--A};
+      %distance
+      \draw[orange, very thick] (A) -- (B)
+      node[right, midway] {$d_2$};
+    \end{tikzpicture}
+  \end{center}
+
+  Notice that the triangular section formed by the terminal side of $\beta-\alpha$, the $x$-axis, and the chord connecting the points where the terminal side of $\beta-\alpha$ and the $x$-axis intersect the circle is the same. These triangular sections are congruent (they share an angle all three angles, and the two side lengths are $r=1$). This means that $d_1=d_2$.
+
+  \begin{align*}
+    d_1 &= \sqrt{(\cos \alpha - \cos\beta)^2+(\sin\alpha - \sin \beta)^2}\\
+    &= \sqrt{\cos^2\alpha - 2\cos\alpha\cos\beta + \cos^2\beta + \sin^2\alpha - 2\sin\alpha\sin\beta + \sin^2\beta}\\
+    & = \sqrt{2 - 2(\cos\alpha\cos\beta + \sin\alpha\sin\beta)}
+  \end{align*}
+
+  \begin{align*}
+    d_2 &= \sqrt{(\cos (\alpha-\beta) - 1)^2+(\sin(\alpha - \beta) - 0)^2}\\
+    &= \sqrt{\cos^2(\alpha-\beta) - 2\cos(\alpha-\beta) + 1 + \sin^2(\alpha-\beta)}\\
+    & = \sqrt{2 - 2\cos(\alpha-\beta)}
+  \end{align*}
+
+  Clearly, then, if $d_1 = d_2$, we can see the resulting difference of angles identity: $\cos(\alpha-\beta) = \cos\alpha\cos\beta + \sin\alpha\sin\beta$.
+\end{prf}
+
+\subsection{Sum Formula for Sine and Cosine: Euler's Formula}
+
+\begin{prf}{Difference Formula for Cosine}
+  Let $\alpha$ and $\beta$ be two angles. Consider the value $e^{i(\theta)}$ where $\theta = \alpha + \beta$.
+
+  \begin{align*}
+    e^{i\theta} &= \cos\theta + i\sin\theta & \text{Let } \theta = \alpha+\beta\\
+    e^{i(\alpha+\beta)} & = \cos(\alpha+\beta) + i\sin(\alpha + \beta)
+  \end{align*}
+
+  We can see that the value $\cos(\alpha+\beta) = \mbox{Re}(e^{i(\alpha+\beta)})$ while $\sin(\alpha+\beta) = \mbox{Im}(e^{i(\alpha+\beta)})$.
+
+  Also note that we can re-write $e^{i(\alpha+\beta)}$ using properties of exponents:
+
+  \begin{align*}
+    e^{i(\alpha+\beta)} & = e^{i\alpha}e^{i\beta}\\
+    &= (\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta)\\
+    & = \cos\alpha\cos\beta + i\sin\alpha\cos\beta + i\cos\alpha\sin\beta -\sin\alpha\sin\beta\\
+    & = (\cos\alpha\cos\beta-\sin\alpha\sin\beta) + i(\sin\alpha\cos\beta + \cos\alpha\sin\beta)
+  \end{align*}
+
+  We are left with:
+
+  \begin{align*}
+    cos(\alpha+\beta) &= \mbox{Re}(e^{i(\alpha+\beta)})\\
+    & = \cos\alpha\cos\beta-\sin\alpha\sin\beta\\
+    \sin(\alpha+\beta) &= \mbox{Im}(e^{i(\alpha+\beta)})\\
+    & = \sin\alpha\cos\beta + \cos\alpha\sin\beta
+  \end{align*}
+  This gives us two of the four sum and difference formulas.
 \end{prf}
